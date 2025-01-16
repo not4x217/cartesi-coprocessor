@@ -7,7 +7,6 @@ rm -rf /cartesi-lambada-coprocessor/contracts/broadcast
 anvil --load-state /root/.anvil/state.json --host 0.0.0.0 --block-time 12 &
 timeout 22 bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$0/$1; do sleep 1; done' 0.0.0.0:8545
 
-0xc5a5C42992dECbae36851359345FE25997F5C42d
 cast send \
     --rpc-url http://0.0.0.0:8545 \
     --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
