@@ -18,3 +18,4 @@ mv script/output/devnet/local_from_scratch_deployment_data.json ../../../../scri
 cd "$parent_path"
 cd contracts/
 forge script script/CoprocessorDeployerDevnet.s.sol --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast -v
+forge script script/CoprocessorCallerDeployer.s.sol --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast -v
