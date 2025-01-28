@@ -14,6 +14,7 @@ services:
       - 127.0.0.1:8545:8545
       - 127.0.0.1:3500:3500
       - 127.0.0.1:5555:5555
+      - 127.0.0.1:8645:8645
     volumes:
       #- ./env/eigenlayer/anvil/avs-and-eigenlayer-deployed-anvil-state.json:/root/.anvil/state.json
       - ./:/cartesi-coprocessor/
