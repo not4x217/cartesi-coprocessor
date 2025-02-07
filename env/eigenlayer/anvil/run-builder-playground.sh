@@ -15,16 +15,6 @@ fi
 
 source /cartesi-coprocessor/deploy-all-builder-playground.sh
 
-#RPC_URL=http://0.0.0.0:8545
-#PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-
-#cd /cartesi-coprocessor/contracts/lib/eigenlayer-middleware/lib/eigenlayer-contracts
-#CHAIN_ID=$(cast chain-id)
-#forge script script/deploy/local/Deploy_From_Scratch.s.sol --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast --sig "run(string memory configFile)" -- local/deploy_from_scratch.anvil.config.json 
-
-#cd /cartesi-coprocessor/contracts
-#forge script script/CoprocessorDeployerDevnet.s.sol --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast -v
-
 cast send \
     --rpc-url http://0.0.0.0:8545 \
     --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
@@ -65,6 +55,10 @@ STRATEGY_UNDERLYING=$(cast call --rpc-url http://0.0.0.0:8545 $STRATEGY_ADDRESS 
 
 cast send --rpc-url http://0.0.0.0:8545 --private-key 0xc276a0e2815b89e9a3d8b64cb5d745d5b4f6b84531306c97aad82156000a7dd7 $STRATEGY_UNDERLYING "approve(address,uint256)" $STRATEGY_MANAGER 10
 cast send --rpc-url http://0.0.0.0:8545 --private-key 0xc276a0e2815b89e9a3d8b64cb5d745d5b4f6b84531306c97aad82156000a7dd7 $STRATEGY_MANAGER "depositIntoStrategy(address,address,uint256)" $STRATEGY_ADDRESS $STRATEGY_UNDERLYING 10
+
+sleep 5
+rbuilder run /usr/local/etc/rbuilder-config.yaml > /root/.playground/devnet/logs/rbuilder.log &
+echo "started rbuilder - rpc server is listening on :8645"
 
 touch /cartesi-coprocessor/env/eigenlayer/anvil/devnet-operators-ready.flag
 
